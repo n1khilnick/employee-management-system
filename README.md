@@ -1,4 +1,5 @@
 ## Employee Management System
+A Java Spring Boot application for efficient employee data management, providing HR personnel an intuitive interface and empowering employees to access and update their information.
 
 ## Frameworks and Language Used
 * Spring Boot
