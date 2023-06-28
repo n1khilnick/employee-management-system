@@ -10,10 +10,14 @@
 ## Data Flow
 1. Controller
    * Employee Controller
-     * **POST** /api/v1/employee/signup: Creates a new employee account.
-     * **POST** /api/v1/employee/signin: Authenticates an employee and generates an access token.
-     * **POST** /api/v1/employee/signout: Invalidates the access token for the employee, logging them out.
-     * **GET** /api/v1/employee/: Retrieves a list of all employees.
+     * **POST** 
+       * /api/v1/employee/signup: Creates a new employee account.
+     * **POST** 
+       * /api/v1/employee/signin: Authenticates an employee and generates an access token.
+     * **POST** 
+       * /api/v1/employee/signout: Invalidates the access token for the employee, logging them out.
+     * **GET** 
+       * /api/v1/employee/: Retrieves a list of all employees.
      
 2. Services
    * Employee Service: Handles business logic related to employee management.
