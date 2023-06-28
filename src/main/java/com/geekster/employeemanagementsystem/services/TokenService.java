@@ -33,6 +33,25 @@ public class TokenService {
         return expectedEmail.equals(employeeEmailId);
     }
 
+    public boolean authenticateByEmployeeId(Long employeeId, String token) {
+
+        if(token==null && employeeId==null){
+            return false;
+        }
+
+        AuthenticationToken authToken = tokenRepo.findFirstByToken(token);
+
+        if(authToken==null){
+            return false;
+        }
+
+        Long expectedId = authToken.getEmployee().getEmployeeId();
+
+
+        return expectedId.equals(employeeId);
+    }
+
+
 
     public void deleteToken(String token) {
         AuthenticationToken token1 = tokenRepo.findFirstByToken(token);

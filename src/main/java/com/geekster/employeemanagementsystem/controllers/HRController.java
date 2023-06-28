@@ -1,5 +1,6 @@
 package com.geekster.employeemanagementsystem.controllers;
 
+import com.geekster.employeemanagementsystem.models.Employee;
 import com.geekster.employeemanagementsystem.models.HR;
 import com.geekster.employeemanagementsystem.services.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class HRController {
         return new ResponseEntity<String>("HR Successfully Added !!", HttpStatus.CREATED);
     }
 
-//    @PutMapping("/emloyee/{employeeId}")
-//    pu
+    @PutMapping(value = "/employeeId/employee")
+    public ResponseEntity<String>updateEmployeeDetails(@PathVariable int employeeId, @RequestBody Employee employee){
+        return hrService.updateEmployeeDetails(employeeId,employee);
+    }
 }

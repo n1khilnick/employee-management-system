@@ -23,15 +23,6 @@ public class EmployeeController {
     @Autowired
     TokenService authService;
 
-//
-//    @PostMapping(value = "/signup")
-//    public ResponseEntity<String> addRest(@RequestBody Employee employee){
-//        employee.setEmployeeSalary((double) -1);
-//        employee.setEmployeeJobRole("");
-//        employeeService.addEmployee(employee);
-//        return new ResponseEntity<String>("Employee Successfully Created !!",HttpStatus.CREATED);
-//    }
-
     @PostMapping("/signup")
     public SignUpOutput signUp(@Valid @RequestBody Employee signUpDto){
         signUpDto.setEmployeeSalary((double) -1);
@@ -74,7 +65,23 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateEmployee(@PathVariable Long employeeId,@RequestBody Employee employee){
-        return employeeService.updateEmployee(employeeId,employee);
+    public ResponseEntity<String> updateEmployee(@PathVariable Long employeeId,@RequestBody Employee employee,@RequestParam String token){
+        HttpStatus status;
+        String msg=null;
+
+        if(authService.authenticateByEmployeeId(employeeId,token))
+        {
+            employeeService.updateEmployee(employeeId,employee);
+            msg = "Employee updated Successfully";
+            status = HttpStatus.OK;
+
+        }
+        else
+        {
+            msg = "Invalid User";
+            status = HttpStatus.FORBIDDEN;
+        }
+
+        return new ResponseEntity<String>(msg , status);
     }
 }
