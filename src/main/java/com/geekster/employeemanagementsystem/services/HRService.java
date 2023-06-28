@@ -20,8 +20,24 @@ public class HRService {
         List<HR> allHR = (List<HR>) hrDao.findAll();
         return new ResponseEntity<String>("HR already exist",HttpStatus.BAD_REQUEST);
     }
-    public ResponseEntity<String> updateEmployeeDetails(int employeeId, Employee employee) {
-        employeeDao.save(employee);
-        return new ResponseEntity<String>("Employee updated successfully", HttpStatus.CREATED);
+    public ResponseEntity<String> updateEmployeeDetails(Long hrId,Long employeeId, Employee employee) {
+        if(hrDao.findById(hrId).isPresent()){
+            employeeDao.save(employee);
+            return new ResponseEntity<String>("Employee updated successfully",HttpStatus.CREATED);
+        }
+        return new ResponseEntity<String>("HR does not exist",HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<String> deleteEmployee(long hrId, int employeeId) {
+        if(hrDao.findById(hrId).isPresent()){
+            HR hr = hrDao.findById(hrId).get();
+            List<Employee>allEmployee = hr.getListEmployee();
+            Employee employee = allEmployee.get(employeeId);
+            if(employee!=null){
+                employeeDao.delete(employee);
+                return new ResponseEntity<String>("Employee deleted successfully",HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<String>("HR does not exist",HttpStatus.BAD_REQUEST);
     }
 }

@@ -21,9 +21,14 @@ public class HRController {
 
         return new ResponseEntity<String>("HR Successfully Added !!", HttpStatus.CREATED);
     }
-
-    @PutMapping(value = "/employeeId/employee")
-    public ResponseEntity<String>updateEmployeeDetails(@PathVariable int employeeId, @RequestBody Employee employee){
-        return hrService.updateEmployeeDetails(employeeId,employee);
+    @PutMapping(value = "hrId/employeeId")
+    public ResponseEntity<String>updateEmployeeDetails(@PathVariable Long hrId, @PathVariable Long employeeId, @RequestBody Employee employee){
+        return hrService.updateEmployeeDetails(hrId,employeeId,employee);
     }
+
+    @DeleteMapping(value = "hrId/employeeId")
+    public ResponseEntity<String>deleteEmployee(@PathVariable long hrId, @PathVariable int employeeId){
+        return hrService.deleteEmployee(hrId,employeeId);
+    }
+
 }

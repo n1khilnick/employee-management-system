@@ -8,6 +8,8 @@ A Java Spring Boot application for efficient employee data management, providing
 * `MySql Ver 8.0.32`
 * `Spring Boot 3.0.5`
 * `IntelliJ IDEA 2023.1 (Community Edition)`
+
+
 ## Data Flow
 
 ### 1. Models:
@@ -30,17 +32,16 @@ A Java Spring Boot application for efficient employee data management, providing
 
 * Add HR:
 ```*.sh-session
-  http://localhost:8080/hr
+  http://localhost:8080/api/v1/hr/
 ```
 
 * Update Employee Details:
 ```*.sh-session
- http://localhost:8080/hr/hrId/{hrId}/employeeId/{employeeId}
+ http://localhost:8080/api/v1/hr/employeeId/employee
 ```
 <br>
 
 * Delete Employee:
-
 ```*.sh-session
  http://localhost:8080/hr/hrId/{hrId}/employeeId/{employeeId}
 ```
@@ -52,26 +53,27 @@ A Java Spring Boot application for efficient employee data management, providing
 
 * Employee signup
 ```*.sh-session
-  http://localhost:8080/employee/signup
+  http://localhost:8080/api/v1/employee/signup
 ```
 
 * Employee signin:
 ```*.sh-session
-http://localhost:8080/employee/signin
+http://localhost:8080/api/v1/employee/signin
 ```
-* Employee signout:
+* Employee sign-out:
 ```*.sh-session
-http://localhost:8080/employee/signout
+http://localhost:8080/api/v1/employee/signout
 ```
 
 * Get All Employees:
 ```*.sh-session
-http://localhost:8080/employee/all
+http://localhost:8080/api/v1/employee/all
 ```
 * Update Employee:
 ```*.sh-session
-http://localhost:8080//employeeId/{employeeId}?employeeEmail={employeeEmail}&token={token}
+http://localhost:8080/api/v1/employee/{employeeId}?employeeEmail={employeeEmail}&token={token}
 ```
+
 ### 3. Services:
 * It consists of **EmployeeService** ,**HRService**, **TokenService** classes in which provide some business functionalities of every handler methods.
 * Used _**@Service**_ annotation to indicate that a class belongs to the service layer.
@@ -81,8 +83,6 @@ http://localhost:8080//employeeId/{employeeId}?employeeEmail={employeeEmail}&tok
 * Used **Iterable** to manage the data of entity classes by performing CRUD operations.
 * Used _**@Repository**_ annotation is used to indicate that the class provides the mechanism for storage, retrieval, search, update and delete operation on objects.
 * Used _**@Modifying**_ annotation wrote named parameters query using @Query annotation to insert, update, or delete an entity.
-
-
 
 ## Project Summary
 * The Employee Management System using Spring Boot is a web-based application designed to streamline the management of employee data for an organization. It provides an easy-to-use interface for HR personnel to 

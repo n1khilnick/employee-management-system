@@ -30,13 +30,10 @@ public class EmployeeController {
         return employeeService.signUp(signUpDto);
     }
 
-
     @PostMapping("/signin")
     public SignInOutput signIn(@Valid @RequestBody SignInInput signInDto){
-
         return employeeService.signIn(signInDto);
     }
-
 
     @DeleteMapping("/signout")
     public ResponseEntity<String> signOut(@RequestParam String employeeEmailId , @RequestParam String token){
@@ -64,7 +61,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{employeeId}")
     public ResponseEntity<String> updateEmployee(@PathVariable Long employeeId,@RequestBody Employee employee,@RequestParam String token){
         HttpStatus status;
         String msg=null;
